@@ -204,17 +204,33 @@ document.addEventListener('DOMContentLoaded', () => {
 // CONTACT FORM HANDLER
 
 document.addEventListener('DOMContentLoaded', () => {
-    const contactForm = document.getElementById('contactForm');
+    const form = document.getElementById("contactForm");
 
-    if(contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            // Simple validation feedback alert placeholder
-            alert('Thank you! Your inquiry message has been submitted successfully.');
-            contactForm.reset();
-        });
-    }
+form.addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    const name = document.getElementById("name").value;
+    const phone = document.getElementById("phone").value;
+    const email = document.getElementById("email").value;
+    const message = document.getElementById("message").value;
+
+    const text =
+`*New Admission Inquiry*
+
+ Name: ${name}
+ Phone: ${phone}
+ Email: ${email}
+
+ Message:
+${message}`;
+
+    window.open(
+        `https://wa.me/923353276275?text=${encodeURIComponent(text)}`,
+        "_blank"
+    );
+
+});
 });
 
 // Smooth scrolling for anchor links

@@ -1452,7 +1452,7 @@ body {
 
 .icon-fb { background-color: #3b5998; }
 .icon-insta { background-color: #e1306c; }
-.icon-yt { background-color: #ff0000; }
+.icon-yt { background-color: #0056bf; }
 
 .social-circle-link:hover {
     transform: scale(1.1);
@@ -1596,4 +1596,88 @@ body {
     height: 100px; /* Aap apni navbar ki height ke mutabiq isay 60px ya 70px bhi kar sakte hain */
     width: auto;  /* Taake image ki aspect ratio kharab na ho */
     object-fit: contain;
+}
+
+
+
+/* ==============================
+   Floating WhatsApp Button
+============================== */
+
+.floating-whatsapp{
+    position:fixed;
+    right:25px;
+    bottom:25px;
+    width:65px;
+    height:65px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#25D366,#128C7E);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    color:#fff;
+    font-size:34px;
+    z-index:9999;
+
+    box-shadow:
+        0 10px 30px rgba(37,211,102,.45),
+        0 0 0 rgba(37,211,102,.6);
+
+    transition:.35s ease;
+
+    animation:
+        whatsappPulse 2s infinite,
+        whatsappFloat 3s ease-in-out infinite;
+}
+
+.floating-whatsapp:hover{
+    transform:translateY(-6px) scale(1.1);
+    box-shadow:
+        0 15px 40px rgba(37,211,102,.6);
+}
+
+@keyframes whatsappPulse{
+    0%{
+        box-shadow:
+            0 0 0 0 rgba(37,211,102,.55);
+    }
+
+    70%{
+        box-shadow:
+            0 0 0 18px rgba(37,211,102,0);
+    }
+
+    100%{
+        box-shadow:
+            0 0 0 0 rgba(37,211,102,0);
+    }
+}
+
+@keyframes whatsappFloat{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-6px);
+    }
+
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+.floating-whatsapp{
+
+    width:58px;
+    height:58px;
+    right:18px;
+    bottom:18px;
+    font-size:30px;
+
+}
+
 }
