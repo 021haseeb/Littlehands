@@ -226,7 +226,7 @@ form.addEventListener("submit", function(e){
 ${message}`;
 
     window.open(
-        `https://wa.me/923353276275?text=${encodeURIComponent(text)}`,
+        `https://wa.me/923323668386?text=${encodeURIComponent(text)}`,
         "_blank"
     );
 
@@ -260,3 +260,210 @@ ${message}`;
         history.pushState(null, '', href);
     });
 })();
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    
+    // 1. Accordion Toggle Logic
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        question.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+            
+            // Apni current category ke baki active items ko close karein
+            const currentCategory = [...faqItems].filter(f => !f.classList.contains('hide-faq'));
+            currentCategory.forEach(innerItem => innerItem.classList.remove('active'));
+            
+            // Agar pehle active nahi tha toh open kar dein
+            if (!isActive) {
+                item.classList.contains('hide-faq') ? null : item.classList.add('active');
+            }
+        });
+    });
+
+    // 2. Swipable Categories/Tabs Switching Filter Logic
+    const tabButtons = document.querySelectorAll('.faq-tab-btn');
+    
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Active class handles for buttons
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            
+            const targetCategory = button.getAttribute('data-target');
+            
+            // Hide all and display targets smoothly
+            faqItems.forEach(item => {
+                item.classList.remove('active'); // Close everything first
+                
+                if (item.classList.contains(targetCategory)) {
+                    item.classList.remove('hide-faq');
+                } else {
+                    item.classList.add('hide-faq');
+                }
+            });
+
+            // Pehle visible item ko automated click kar ke open kar dein dynamic feel ke liye
+            const firstVisible = document.querySelector(`.faq-item.${targetCategory}`);
+            if (firstVisible) {
+                firstVisible.classList.add('active');
+            }
+        });
+    });
+});
+
+// TESTIMONIALS SLIDER LOGIC (fix: use correct IDs + avoid conflicts with gallery prev/next)
+document.addEventListener("DOMContentLoaded", function () {
+    const testimonialsSection = document.getElementById("testimonials");
+    if (!testimonialsSection) return;
+
+    const track = testimonialsSection.querySelector("#sliderTrack");
+    const slides = testimonialsSection.querySelectorAll(".testimonial-slide");
+    const prevBtn = testimonialsSection.querySelector("#prevBtn");
+    const nextBtn = testimonialsSection.querySelector("#nextBtn");
+    const dotsContainer = testimonialsSection.querySelector("#sliderDots");
+
+    // Guard clause: agar element page par nahi hain tou code error na de
+    if (!track || slides.length === 0 || !prevBtn || !nextBtn || !dotsContainer) return;
+
+    let currentIndex = 0;
+    let autoPlayTimer;
+
+    function getItemsPerView() {
+        return window.innerWidth > 992 ? 2 : 1;
+    }
+
+    function getMaxIndices() {
+        const itemsPerView = getItemsPerView();
+        return slides.length - itemsPerView + 1;
+    }
+
+    // 1. Dynamic Dots Setup Control Generator
+    function createDots() {
+        dotsContainer.innerHTML = "";
+        const maxIndices = getMaxIndices();
+
+        for (let i = 0; i < maxIndices; i++) {
+            const dot = document.createElement("div");
+            dot.classList.add("dot");
+            if (i === currentIndex) dot.classList.add("active");
+            dot.addEventListener("click", () => goToSlide(i));
+            dotsContainer.appendChild(dot);
+        }
+    }
+
+    // 2. Core Moving Slider Engine Mechanics
+    function updateSlider() {
+        const itemsPerView = getItemsPerView();
+        let maxIndices = slides.length - itemsPerView + 1;
+        if (maxIndices < 1) maxIndices = 1;
+
+        // Boundaries checks reset loops safety guards
+        if (currentIndex >= maxIndices) currentIndex = 0;
+        if (currentIndex < 0) currentIndex = maxIndices - 1;
+
+        const slideWidth = slides[0].getBoundingClientRect().width;
+        const gapSize = 25; // must match .testimonials-slider-track gap
+
+        // Horizontal translation transformation calculations
+        const moveDistance = currentIndex * (slideWidth + gapSize);
+        track.style.transform = `translateX(-${moveDistance}px)`;
+
+        // Update active dot layout securely
+        const dots = dotsContainer.querySelectorAll(".dot");
+        dots.forEach((dot, idx) => {
+            if (idx === currentIndex) dot.classList.add("active");
+            else dot.classList.remove("active");
+        });
+    }
+
+    function goToSlide(index) {
+        currentIndex = index;
+        updateSlider();
+        startAutoPlay(); // Restart timer rules upon interactions
+    }
+
+    // Navigation Triggers
+    nextBtn.addEventListener("click", () => {
+        currentIndex++;
+        updateSlider();
+        startAutoPlay();
+    });
+
+    prevBtn.addEventListener("click", () => {
+        currentIndex--;
+        updateSlider();
+        startAutoPlay();
+    });
+
+    // 3. Automated Slide Cycle Loop Controls (4 seconds intervals)
+    function startAutoPlay() {
+        clearInterval(autoPlayTimer);
+        autoPlayTimer = setInterval(() => {
+            currentIndex++;
+            updateSlider();
+        }, 4000);
+    }
+
+    // 4. Manual Touch Drag & Swipe Calculations Setup
+    let startX = 0;
+    let isDragging = false;
+
+    track.addEventListener("mousedown", (e) => {
+        startX = e.pageX;
+        isDragging = true;
+    });
+
+    track.addEventListener("mouseup", (e) => {
+        if (!isDragging) return;
+        const endX = e.pageX;
+        handleSwipe(startX, endX);
+        isDragging = false;
+    });
+
+    track.addEventListener(
+        "touchstart",
+        (e) => {
+            startX = e.touches[0].clientX;
+            isDragging = true;
+        },
+        { passive: true }
+    );
+
+    track.addEventListener(
+        "touchend",
+        (e) => {
+            if (!isDragging) return;
+            const endX = e.changedTouches[0].clientX;
+            handleSwipe(startX, endX);
+            isDragging = false;
+        },
+        { passive: true }
+    );
+
+    function handleSwipe(start, end) {
+        const threshold = 50; // swipe detection
+        if (start - end > threshold) {
+            currentIndex++; // Swiped left -> Go Next
+        } else if (end - start > threshold) {
+            currentIndex--; // Swiped right -> Go Prev
+        }
+        updateSlider();
+        startAutoPlay();
+    }
+
+    // Window Resize Recalibration monitors
+    window.addEventListener("resize", () => {
+        // recreate dots because itemsPerView might change
+        currentIndex = Math.min(currentIndex, getMaxIndices() - 1);
+        createDots();
+        updateSlider();
+    });
+
+    // Initial Active Setup Trigger execution Callings
+    createDots();
+    updateSlider();
+    startAutoPlay();
+});
