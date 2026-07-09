@@ -928,13 +928,13 @@ body {
 }
 
 @media (max-width: 768px) {
-    .gallery-card {
-        aspect-ratio: 1 / 1;
-    }
-
     .gallery-card img {
-        object-fit: cover;
-        object-position: center;
+        object-fit: contain;
+        background: #fff;
+    }
+    .gallery-card {
+        min-width: calc(100% - 10px); /* 1 Card on Mobile */
+        height: 280px;
     }
     .nav-btn {
         position: absolute;
