@@ -180,26 +180,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// FAQ 100% WORKING INTERACTION ACCORDION
-document.addEventListener('DOMContentLoaded', () => {
-    const faqQuestions = document.querySelectorAll('.faq-question');
-
-    faqQuestions.forEach(question => {
-        question.addEventListener('click', () => {
-            const currentItem = question.parentElement;
-            
-            // Close other open panels automatically
-            document.querySelectorAll('.faq-item').forEach(item => {
-                if (item !== currentItem && item.classList.contains('active')) {
-                    item.classList.remove('active');
-                }
-            });
-
-            // Toggle active status
-            currentItem.classList.toggle('active');
-        });
-    });
-});
 
 // CONTACT FORM HANDLER
 
