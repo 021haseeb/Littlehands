@@ -686,6 +686,13 @@ body {
     pointer-events: none;
 }
 
+.custom-icon{
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+
+
 /* First row (items 1–4) */
 .connecting-line.row-1 {
     top: 50px; /* Aligns exactly middle of the 100px circles */
