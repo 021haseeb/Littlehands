@@ -690,7 +690,7 @@ body {
     width: 70px;
     height: 70px;
     object-fit: contain;
-    filter: brightness(0) invert(1);
+    filter: brightness(0) saturate(100%) invert(91%) sepia(16%) saturate(500%) hue-rotate(210deg) brightness(100%);
 }
 
 
