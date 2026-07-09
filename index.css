@@ -1042,7 +1042,7 @@ body {
     cursor: pointer;
 }
 
-@media (max-width: 768px) {
+
     @media (max-width: 768px) {
 
     .gallery-slider-track-container {
@@ -1074,16 +1074,21 @@ body {
     }
 
     /* dots hide */
-    .slider-dots {
-        display: none;
+     .slider-dots {
+        display: none !important;
+        visibility: hidden;
+        opacity: 0;
+        height: 0;
+        margin: 0;
+        overflow: hidden;
     }
 
-}
     .lightbox-nav { width: 45px; height: 45px; font-size: 1.1rem; }
     .lightbox-left { left: 15px; }
     .lightbox-right { right: 15px; }
     .lightbox-close { top: 15px; right: 25px; }
 }
+
 
 
 
