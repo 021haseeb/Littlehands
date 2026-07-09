@@ -666,24 +666,35 @@ body {
 /* Timeline/Row Container with Connecting Line */
 .features-timeline-row {
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 25px;
     position: relative;
     width: 100%;
     justify-content: center;
 }
 
-/* Dashed background centerline connecting icons */
+/* Dashed background centerline connecting icons (2 rows for 8 timeline items) */
 .connecting-line {
     position: absolute;
-    top: 50px; /* Aligns exactly middle of the 100px circles */
     left: 0;
     right: 0;
     margin: 0 auto;
-    width: 85%;
+    width: 82%;
     height: 2px;
-    border-top: 2px dashed rgba(251, 194, 0, 0.4);
+    border-top: transparent;
     z-index: 1;
+    pointer-events: none;
+}
+
+/* First row (items 1–4) */
+.connecting-line.row-1 {
+    top: 50px; /* Aligns exactly middle of the 100px circles */
+}
+
+/* Second row (items 5–8) */
+.connecting-line.row-2 {
+    /* Position second dashed line for the 2nd grid row */
+    top: calc(50px + 150px);
 }
 
 /* Individual Feature Item */
@@ -748,8 +759,15 @@ body {
         gap: 40px;
     }
     .connecting-line {
-        display: none; /* Hide linear line on broken grids */
+        /* Hide linear lines on broken grids */
+        display: none;
     }
+    .connecting-line.row-1,
+    .connecting-line.row-2 {
+        display: none;
+    }
+
+
 }
 
 @media (max-width: 768px) {
