@@ -184,33 +184,44 @@ document.addEventListener('DOMContentLoaded', () => {
 // CONTACT FORM HANDLER
 
 document.addEventListener('DOMContentLoaded', () => {
+
+    emailjs.init("MaCbgjeDe0_LIRzGI");
+
     const form = document.getElementById("contactForm");
 
-form.addEventListener("submit", function(e){
+    form.addEventListener("submit", function(e){
 
-    e.preventDefault();
+        e.preventDefault();
 
-    const name = document.getElementById("name").value;
-    const phone = document.getElementById("phone").value;
-    const email = document.getElementById("email").value;
-    const message = document.getElementById("message").value;
+        const params = {
+            from_name: document.getElementById("name").value,
+            phone: document.getElementById("phone").value,
+            email: document.getElementById("email").value,
+            message: document.getElementById("message").value
+        };
 
-    const text =
-`*New Admission Inquiry*
 
- Name: ${name}
- Phone: ${phone}
- Email: ${email}
+        emailjs.send(
+            "service_fntox0p",
+            "template_v9bvxeh",
+            params
+        )
+        .then(() => {
 
- Message:
-${message}`;
+            alert("Your message has been sent successfully!");
 
-    window.open(
-        `https://wa.me/923323668386?text=${encodeURIComponent(text)}`,
-        "_blank"
-    );
+            form.reset();
 
-});
+        })
+        .catch((error) => {
+
+            console.log("Email Error:", error);
+            alert("Failed to send message. Please try again.");
+
+        });
+
+    });
+
 });
 
 // Smooth scrolling for anchor links

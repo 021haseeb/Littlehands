@@ -687,8 +687,8 @@ body {
 }
 
 .custom-icon{
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
     object-fit: contain;
     filter: brightness(0) invert(1);
 }
@@ -857,11 +857,11 @@ body {
     box-shadow: 0 10px 20px rgba(0,0,0,0.3);
     background-color: var(--bg-light-purple);
 }
-
 .gallery-card img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    background: #fff;
     transition: transform 0.3s ease;
 }
 
