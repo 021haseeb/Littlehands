@@ -458,3 +458,55 @@ document.addEventListener("DOMContentLoaded", function () {
     updateSlider();
     startAutoPlay();
 });
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  const phone = document.querySelector('.lhs-phone');
+  if(phone){
+    phone.addEventListener('mouseenter', () => {
+      phone.style.transform = 'scale(1.05)';
+      phone.style.transition = 'transform 0.3s ease';
+    });
+    phone.addEventListener('mouseleave', () => {
+      phone.style.transform = 'scale(1)';
+    });
+  }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+
+  const downloadBtn = document.querySelector('.dl-btn');
+  
+  if(downloadBtn){
+    
+    // APK ka link yaha set karo
+    downloadBtn.href = "app.apk"; 
+    downloadBtn.setAttribute('download', 'LittleHands-ParentApp.apk');
+
+    downloadBtn.addEventListener('click', function(e) {
+      
+      // Download track karne ke liye
+      console.log("APK Download Started - Little Hands Parent App");
+      
+      // Optional: 1 sec baad check karo download hua ya nahi
+      setTimeout(() => {
+        console.log("Download request sent");
+      }, 1000);
+      
+    });
+  }
+
+  // Phone wala float animation agar pehle wale section me bhi hai to
+  const phone = document.querySelector('.lhs-phone');
+  if(phone){
+    phone.addEventListener('mouseenter', () => {
+      phone.style.transform = 'scale(1.05)';
+      phone.style.transition = 'transform 0.3s ease';
+    });
+    phone.addEventListener('mouseleave', () => {
+      phone.style.transform = 'scale(1)';
+    });
+  }
+  
+});
