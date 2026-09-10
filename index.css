@@ -894,7 +894,7 @@ body {
   animation: lhsFloat 3s ease-in-out infinite;
 }
 .lhs-phone img {
-  width: 680px;
+  width: 425px;
   height: auto;
   filter: drop-shadow(0 20px 40px rgba(251, 194, 0, 0.3)); /* Golden shadow */
 }
@@ -920,6 +920,53 @@ body {
   .lhs-sub { font-size: 1.1rem; }
   .lhs-circle { width: 280px; height: 280px; }
 }
+
+
+
+
+
+
+
+/* ========= SOCIAL BUTTON ========= */
+.btn-download-app {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 25px;
+    padding: 14px 28px;
+    background: var(--yellow);
+    color: var(--bg-dark-purple);
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 26px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(251, 194, 0, 0.3);
+}
+
+.btn-download-app:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(251, 194, 0, 0.5);
+    background: #ffd633; /* thora bright hover */
+}
+
+.btn-download-app i {
+    font-size: 1.1rem;
+}
+
+/* Mobile pe center */
+@media (max-width: 992px) {
+    .btn-download-app {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+
+
+
+
+
 
 
 
