@@ -808,7 +808,7 @@ body {
 
 .little-hands-section {
   padding: 80px 5%;
-  background: linear-gradient(135deg, #f0f8ff 0%, #e6f3ff 100%);
+  background-color: var(--bg-dark-purple);
   font-family: 'Poppins', sans-serif;
   overflow: hidden;
 }
@@ -831,12 +831,12 @@ body {
   line-height: 1.15;
   margin-bottom: 20px;
 }
-.lhs-dark { color: #0a3d91; }
-.lhs-light { color: #007bff; }
+.lhs-dark { color: var(--white); } /* White instead of dark blue */
+.lhs-light { color: var(--yellow); } /* Golden instead of light blue */
 
 .lhs-sub {
   font-size: 1.3rem;
-  color: #0a3d91;
+  color: var(--yellow);
   font-weight: 600;
   margin-bottom: 15px;
 }
@@ -844,14 +844,14 @@ body {
 .lhs-line {
   width: 80px;
   height: 4px;
-  background: #ffc107;
+  background: var(--yellow);
   border-radius: 2px;
   margin-bottom: 25px;
 }
 
 .lhs-desc {
   font-size: 1rem;
-  color: #4a5568;
+  color: var(--text-muted);
   line-height: 1.8;
   max-width: 500px;
 }
@@ -869,18 +869,20 @@ body {
   position: absolute;
   width: 500px;
   height: 500px;
-  background: #dbeeff;
+  background: rgba(251, 194, 0, 0.1); /* Golden glow instead of light blue */
   border-radius: 50%;
   z-index: 0;
+  box-shadow: 0 0 80px rgba(251, 194, 0, 0.2);
 }
 
 .lhs-spark {
   position: absolute;
   width: 12px;
   height: 40px;
-  background: #ffc107;
+  background: var(--yellow);
   border-radius: 10px;
   z-index: 1;
+  box-shadow: 0 0 15px rgba(251, 194, 0, 0.5);
 }
 .lhs-spark.s1 { top: 5%; right: 10%; transform: rotate(30deg); }
 .lhs-spark.s2 { bottom: 25%; left: 5%; transform: rotate(-20deg); }
@@ -892,15 +894,16 @@ body {
   animation: lhsFloat 3s ease-in-out infinite;
 }
 .lhs-phone img {
-  width: 620px;
+  width: 680px;
   height: auto;
-  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.15));
+  filter: drop-shadow(0 20px 40px rgba(251, 194, 0, 0.3)); /* Golden shadow */
 }
 
 @keyframes lhsFloat {
  0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-15px); }
 }
+
 
 /* Responsive */
 @media (max-width: 992px) {
@@ -925,13 +928,15 @@ body {
 .download-section {
   padding: 40px 5%;
   font-family: 'Poppins', sans-serif;
-  background: transparent;
+  background-color: var(--bg-dark-purple);
 }
 
 .dl-container {
   max-width: 1050px;
   margin: 0 auto;
-  background: #eef5ff;
+  background: rgba(255, 255, 255, 0.05); /* glass effect on dark bg */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
   border-radius: 20px;
   padding: 35px 40px;
   display: flex;
@@ -945,87 +950,89 @@ body {
 .dl-android-icon {
   width: 80px;
   height: 80px;
-  background: #dcedc8;
+  background: rgba(251, 194, 0, 0.15); /* yellow light bg */
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto 10px;
 }
-.dl-android-icon svg { width: 45px; height: 45px; }
-.dl-label { color: #0a3d91; font-weight: 600; font-size: 0.9rem; }
+.dl-android-icon svg { width: 45px; height: 45px; fill: var(--yellow); }
+.dl-label { color: var(--white); font-weight: 600; font-size: 0.9rem; }
 
 /* Middle */
 .dl-middle { flex: 1; }
 .dl-heading {
-  color: #0a3d91;
+  color: var(--white);
   font-size: 1.6rem;
   font-weight: 700;
   margin-bottom: 8px;
 }
 .dl-desc {
-  color: #4a5568;
+  color: var(--text-muted);
   font-size: 0.95rem;
   line-height: 1.6;
   margin-bottom: 18px;
   max-width: 450px;
 }
 
+/* GOLDEN BUTTON */
 .dl-btn {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  background: #0056ff;
-  color: #fff;
-  font-weight: 600;
+  background: var(--yellow);
+  color: var(--bg-dark-purple); /* dark text on yellow */
+  font-weight: 700;
   font-size: 1rem;
   padding: 14px 28px;
   border-radius: 50px;
   text-decoration: none;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 86, 255, 0.3);
+  box-shadow: 0 4px 20px rgba(251, 194, 0, 0.4);
 }
 .dl-btn:hover {
-  background: #0041c4;
+  background: #ffd633; /* lighter golden on hover */
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 86, 255, 0.4);
+  box-shadow: 0 6px 25px rgba(251, 194, 0, 0.6);
 }
 .dl-download-icon { width: 20px; height: 20px; }
 
 /* Right */
 .dl-right { flex-shrink: 0; }
 .dl-help-box {
-  background: #e3edff;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 15px;
   padding: 18px 20px;
   display: flex;
   align-items: center;
   gap: 15px;
-  max-width: 300px;
+  max-width: 340px; /* 300px se 340px kar diya */
+  min-width: 320px; /* ye add kar do */
 }
 .dl-help-icon {
   width: 45px;
   height: 45px;
-  background: #0056ff;
+  background: var(--yellow);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
 }
-.dl-help-icon svg { width: 24px; height: 24px; }
+.dl-help-icon svg { width: 24px; height: 24px; fill: var(--bg-dark-purple); }
 .dl-help-title {
-  color: #0a3d91;
-  font-size: 0.95rem;
+  color: var(--white);
+  font-size: 0.9rem;
   font-weight: 700;
   margin-bottom: 4px;
 }
 .dl-help-text {
-  color: #4a5568;
+  color: var(--text-muted);
   font-size: 0.85rem;
   line-height: 1.5;
 }
-
 /* Responsive */
 @media (max-width: 992px) {
   .dl-container { flex-direction: column; text-align: center; padding: 30px 25px; }
